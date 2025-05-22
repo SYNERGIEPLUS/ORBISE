@@ -14,23 +14,41 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            <livewire:layout.navigation />
+    <body class="bg-gray-100 text-gray-800 min-h-screen">
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+        <div class="flex">
+            {{-- Sidebar --}}
+            <aside class="w-64 bg-white shadow-md min-h-screen hidden md:block">
+                <div class="p-4 text-xl font-bold border-b">MonDashboard</div>
+                <nav class="p-4 space-y-2">
+                    <a href="/dashboard" class="block px-2 py-1 hover:bg-gray-200 rounded">🏠 Dashboard</a>
+                    <a href="/utilisateurs" class="block px-2 py-1 hover:bg-gray-200 rounded">👥 Utilisateurs</a>
+                    <a href="/paiements" class="block px-2 py-1 hover:bg-gray-200 rounded">💰 Paiements</a>
+                </nav>
+            </aside>
+
+            {{-- Content --}}
+            <main class="flex-1">
+                {{-- Topbar --}}
+                <header class="bg-white shadow p-4 flex justify-between items-center">
+                    <h1 class="text-2xl font-semibold">@yield('title', 'Dashboard')</h1>
+                    <div>
+                        <span class="mr-4">👤 {{ Auth::user()->name }}</span>
+                        <form method="POST" action="#" class="inline">
+                            @csrf
+                            <button type="submit" class="text-red-500 hover:underline">Déconnexion</button>
+                        </form>
                     </div>
                 </header>
-            @endif
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
+                {{-- Main content --}}
+                <div class="p-6">
+                    @yield('content')
+                </div>
             </main>
         </div>
+
+        @livewireScripts
+        <script src="//unpkg.com/alpinejs" defer></script>
     </body>
 </html>

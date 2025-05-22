@@ -1,17 +1,24 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
+@section('title', 'Tableau de bord')
+
+@section('content')
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-lg font-semibold mb-2">Total Paiements</h2>
+            <p class="text-2xl font-bold text-green-600">125 000 F CFA</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-lg font-semibold mb-2">Utilisateurs</h2>
+            <p class="text-2xl font-bold text-blue-600">54</p>
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-lg font-semibold mb-2">Maisons publiées</h2>
+            <p class="text-2xl font-bold text-yellow-600">12</p>
         </div>
     </div>
-</x-app-layout>
+
+    <div class="mt-6">
+        @livewire('board') {{-- Exemple de composant Livewire --}}
+    </div>
+@endsection
