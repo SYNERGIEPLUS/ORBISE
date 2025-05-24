@@ -1,3 +1,22 @@
+<?php
+
+use App\Livewire\Actions\Logout;
+use Livewire\Volt\Component;
+use Illuminate\Support\Facades\Auth;
+
+new class extends Component
+{
+    /**
+     * Log the current user out of the application.
+     */
+    public function logout(Logout $logout): void
+    {
+        $logout();
+
+        $this->redirect('/', navigate: true);
+    }
+}; ?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -18,26 +37,74 @@
 
         <div class="flex">
             {{-- Sidebar --}}
+            <!-- Ajoute ce CDN dans le <head> si ce n’est pas déjà fait -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+            @php
+                $current = request()->route()->getName();
+            @endphp
+
             <aside class="w-64 bg-white shadow-md min-h-screen hidden md:block">
-                <div class="p-4 text-xl font-bold border-b">MonDashboard</div>
-                <nav class="p-4 space-y-2">
-                    <a href="/dashboard" class="block px-2 py-1 hover:bg-gray-200 rounded">🏠 Dashboard</a>
-                    <a href="/utilisateurs" class="block px-2 py-1 hover:bg-gray-200 rounded">👥 Utilisateurs</a>
-                    <a href="/paiements" class="block px-2 py-1 hover:bg-gray-200 rounded">💰 Paiements</a>
+                <div class="p-4 text-2xl font-extrabold border-b text-gray-700 flex items-center space-x-2">
+                    <i class="fas fa-circle-nodes text-blue-600 text-2xl"></i>
+                    <span>ORBIS</span>
+                </div>
+
+                @php
+                    $user = Auth::user();
+                @endphp
+
+                
+                <nav class="p-4 space-y-2 text-base font-medium text-gray-600">
+                    <a href="{{ route('dashboard') }}" 
+                    class="flex items-center px-3 py-2 rounded {{ $current == 'dashboard' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                        <i class="fas fa-chart-line text-xl w-6 mr-3"></i> Tableau de bord
+                    </a>
+                    @if($user && $user->hasPermission('utilisateur'))
+                    <a href="{{ route('users') }}" 
+                    class="flex items-center px-3 py-2 rounded {{ $current == 'users' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                        <i class="fas fa-users text-xl w-6 mr-3"></i> Utilisateurs
+                    </a>
+                    @endif
+                    @if($user && $user->hasPermission('commande'))
+                        <a href="{{ route('cmd') }}" 
+                        class="flex items-center px-3 py-2 rounded {{ $current == 'cmd' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                            <i class="fas fa-file-invoice-dollar text-xl w-6 mr-3"></i> Commandes
+                        </a>
+                    @endif
+                    @if($user && $user->hasPermission('amendement'))
+                    <a href="{{ route('amender') }}" 
+                    class="flex items-center px-3 py-2 rounded {{ $current == 'amender' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                        <i class="fas fa-pen-nib text-xl w-6 mr-3"></i> Amendements
+                    </a>
+                    @endif
+                    @if($user && $user->hasPermission('cmd_valide'))
+                    <a href="{{ route('validate') }}" 
+                    class="flex items-center px-3 py-2 rounded {{ $current == 'validate' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                        <i class="fas fa-check-circle text-xl w-6 mr-3"></i> Cmd validées
+                    </a>
+                    @endif
+                    @if($user && $user->hasPermission('cmd_rejete'))
+                    <a href="{{ route('dismiss') }}" 
+                    class="flex items-center px-3 py-2 rounded {{ $current == 'dismiss' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                        <i class="fas fa-times-circle text-xl w-6 mr-3"></i> Cmd rejetées
+                    </a>
+                    @endif
                 </nav>
             </aside>
+
+            {{-- Mobile sidebar --}}
 
             {{-- Content --}}
             <main class="flex-1">
                 {{-- Topbar --}}
                 <header class="bg-white shadow p-4 flex justify-between items-center">
                     <h1 class="text-2xl font-semibold">@yield('title', 'Dashboard')</h1>
-                    <div>
-                        <span class="mr-4">👤 {{ Auth::user()->name }}</span>
-                        <form method="POST" action="#" class="inline">
-                            @csrf
-                            <button type="submit" class="text-red-500 hover:underline">Déconnexion</button>
-                        </form>
+                    <div class="inline">
+                        <a href="{{ route('profile') }}" class="text-black hover:underline">
+                            👤 {{ Auth::user()->name }}
+                        </a>
+                        @livewire('logout-button')
                     </div>
                 </header>
 

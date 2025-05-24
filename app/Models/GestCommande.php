@@ -15,8 +15,11 @@ class GestCommande extends Model
         'id_client',
         'ID_Carte',
         'DateCommande',
+        'NatureCarte',
+        'ServiceCommande',
         'DateLivraison',
-        'TypeCarte',
+        'TypeCartes',
+        'Caracteristique',
         'PaysCommande',
         'VilleCommande',
         'Etat',
@@ -31,4 +34,10 @@ class GestCommande extends Model
     {
         return $this->belongsTo(Client::class, 'id_client');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user'); // 'user' est le nom de la colonne dans ta table
+    }
+
 }
