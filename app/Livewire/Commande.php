@@ -15,8 +15,9 @@ class Commande extends Component
     public array $Caracteristique = [];
 
     public $showConfirmationModal = false;
+    public $showDetail = false;
 
-    public $ID_Carte, $DateCommande, $NatureCarte, $ServiceCommande, $DateLivraison, $TypeCartes, $PaysCommande, $VilleCommande, $Etat, $Mail, $Telephone, $Quantite, $user_id;
+    public $ID_Carte, $DateCommande, $selectedCmd, $NatureCarte, $ServiceCommande, $DateLivraison, $TypeCartes, $PaysCommande, $VilleCommande, $Etat, $Mail, $Telephone, $Quantite, $user_id;
     public $CmdIdToDelete;
 
     public $isModalOpen = false;
@@ -31,6 +32,17 @@ class Commande extends Component
     {
         $this->resetFields();
         $this->isModalOpen = true;
+    }
+
+    public function details($id)
+    {
+        $this->selectedCmd = GestCommande::where('id', $id)->first();
+
+        if (!$this->selectedCmd) {
+            $this->dispatchBrowserEvent('alert', ['message' => 'Commande introuvable !']);
+            return;
+        }
+        $this->showDetail = true;
     }
 
     public function closeModal()

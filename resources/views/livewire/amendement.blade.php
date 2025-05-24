@@ -1,4 +1,8 @@
 <div class="bg-white p-4 rounded shadow">
+
+    <!-- Notifications -->
+    <x:notify-messages />
+
     <h3 class="text-lg font-semibold mb-4">Ammendements</h3>
 
     @if($showModalValidation)

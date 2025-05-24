@@ -1,6 +1,9 @@
 <div class="bg-white p-4 rounded shadow">
     <h3 class="text-lg font-semibold mb-4">Gestion des Commandes</h3>
 
+    <!-- Notifications -->
+    <x:notify-messages />
+
     @if($isModalOpen)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div class="bg-white w-full max-w-2xl p-6 rounded shadow-xl overflow-y-auto max-h-screen">
@@ -122,6 +125,70 @@
         </div>
     @endif
 
+    @if($showDetail)
+        <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-2xl">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Détails de la commande</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700">
+                    <div>
+                        <p class="font-semibold">Nature Carte :</p>
+                        <p>{{ $selectedCmd->NatureCarte ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Date Commande :</p>
+                        <p>{{ $selectedCmd->DateCommande ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Date Livraison :</p>
+                        <p>{{ $selectedCmd->DateLivraison ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Pays :</p>
+                        <p>{{ $selectedCmd->PaysCommande ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Ville :</p>
+                        <p>{{ $selectedCmd->VilleCommande ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Téléphone :</p>
+                        <p>{{ $selectedCmd->Telephone ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Quantité :</p>
+                        <p>{{ $selectedCmd->Quantite ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Etat :</p>
+                        @if($selectedCmd->Etat == '1')
+                            <span class="bg-green-500 text-white px-2 py-1 rounded">Livré</span>
+                        @elseif($selectedCmd->Etat == '0')
+                            <span class="bg-yellow-500 text-white px-2 py-1 rounded">attente</span>
+                        @else
+                            <span class="bg-gray-400 text-white px-2 py-1 rounded">Rejeter</span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button wire:click="$set('showDetail', false)"
+                        class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg shadow-sm">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    @endif
+
     <div class="space-y-4">
         <!-- Table à gauche -->
         <div class="table-auto w-full border border-gray-300 rounded-md shadow-sm overflow-x-auto">
@@ -160,10 +227,19 @@
                             <td class="px-4 py-3 border-b">{{ $carte->Mail }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->Telephone }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->Quantite }}</td>
-                            <td class="px-4 py-3 border-b">
-                                <button wire:click="confirmDelete({{ $carte->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded text-xs flex items-center space-x-2">
-                                    <i class="fas fa-trash"></i>
+                            <td class="px-4 py-3 border-b space-y-2">
+                                <!-- Bouton Supprimer -->
+                                <button wire:click="confirmDelete({{ $carte->id }})"
+                                    class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-3 rounded text-sm flex items-center justify-center space-x-2">
+                                    <i class="fas fa-trash-alt"></i>
                                     <span>Supprimer</span>
+                                </button>
+
+                                <!-- Bouton Détails -->
+                                <button wire:click="details({{ $carte->id }})"
+                                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 rounded text-sm flex items-center justify-center space-x-2">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Détails</span>
                                 </button>
                             </td>
                         </tr>
