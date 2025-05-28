@@ -81,7 +81,7 @@ class Clients extends Component
             ]);
         }
 
-        $this->closeModal();
+        $this->closeDetail();
         session()->flash('message', 'Client enregistré avec succès.');
     }
 
@@ -109,7 +109,7 @@ class Clients extends Component
 
     public function closeDetail()
     {
-        $this->showDetailClient = false;
+        $this->closeModalClient();
         $this->selectedCmd = null;
     }
 
