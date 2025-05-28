@@ -54,7 +54,6 @@ class Commande extends Component
     {
         $this->DateCommande = '';
         $this->DateLivraison = '';
-        $this->TypeCartes = '';
         $this->Caracteristique = [];
         $this->NatureCarte = '';
         $this->ServiceCommande = '';
@@ -74,7 +73,6 @@ class Commande extends Component
             'ServiceCommande' => 'required|string',
             'Caracteristique' => 'required|array|min:1',
             'DateLivraison' => 'required|date',
-            'TypeCartes' => 'required|string',
             'PaysCommande' => 'required|string',
             'VilleCommande' => 'required|string',
             'Etat' => 'required|string',
@@ -89,7 +87,6 @@ class Commande extends Component
             'Caracteristique' => json_encode($this->Caracteristique),
             'ServiceCommande' => $this->ServiceCommande,
             'DateLivraison' => $this->DateLivraison,
-            'TypeCartes' => $this->TypeCartes,
             'PaysCommande' => $this->PaysCommande,
             'VilleCommande' => $this->VilleCommande,
             'Etat' => $this->Etat,

@@ -41,7 +41,7 @@
                             <td class="px-4 py-3 border-b">{{ $carte->Quantite }}</td>
                             <td class="px-4 py-3 border-b">
                                 <div class="flex space-x-2">
-                                    <button wire:click="showModalValider({{ $carte->id }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded text-xs flex items-center space-x-2">
+                                    <button wire:click="showModalAnuller({{ $carte->id }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded text-xs flex items-center space-x-2">
                                         <i class="fas fa-check"></i>
                                         <span>Annuler</span>
                                     </button>

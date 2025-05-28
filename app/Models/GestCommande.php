@@ -40,4 +40,9 @@ class GestCommande extends Model
         return $this->belongsTo(User::class, 'user'); // 'user' est le nom de la colonne dans ta table
     }
 
+    protected $casts = [
+        'Caracteristique' => 'array',
+    ];
+
+
 }

@@ -31,8 +31,16 @@ Route::view('dismiss', 'dismiss')
     ->middleware(['auth', 'verified'])
     ->name('dismiss'); 
 
+Route::view('card', 'card')
+    ->middleware(['auth', 'verified'])
+    ->name('card');
+    
+Route::view('people', 'people')
+    ->middleware(['auth', 'verified'])
+    ->name('people');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
-    ->name('profile');
+    ->name('profile');  
 
 require __DIR__.'/auth.php';

@@ -23,11 +23,6 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm">Type Carte</label>
-                            <input type="text" wire:model.defer="TypeCartes" class="w-full border rounded px-3 py-2">
-                        </div>
-
-                        <div>
                             <label class="block text-sm">Service Commande</label>
                             <input type="text" wire:model.defer="ServiceCommande" class="w-full border rounded px-3 py-2">
                         </div>
@@ -78,7 +73,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm">Caractéristique</label>
+                            <label class="block text-sm">Type de Carte</label>
                             <select wire:model.defer="Caracteristique" multiple class="w-full border rounded px-3 py-2 h-32">
                                 <option value="politique">@lang('Carte politique')</option>
                                 <option value="physique">@lang('Carte physique')</option>

@@ -13,9 +13,25 @@ class Rejeter extends Component
 
     public $cmd;
 
+    public function showModalAnuller($id)
+    {
+        $commande = GestCommande::find($id);
+
+        if ($commande) {
+            $commande->Etat = '0';
+            $commande->save();
+
+            session()->flash('success', 'Commande annulée avec succès.');
+        } else {
+            session()->flash('error', 'Commande introuvable.');
+        }
+
+        $this->cmd = GestCommande::where('Etat', '2')->get();
+    }
+
     public function mount()
     {
-        // Récupérer uniquement les commandes avec Etat = 0
+        // Récupérer uniquement les commandes avec Etat = 0 
         $this->cmd = GestCommande::where('Etat', '2')->get();
     }
 
