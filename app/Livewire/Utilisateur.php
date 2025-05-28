@@ -71,6 +71,8 @@ class Utilisateur extends Component
             // Fermer le modal après la suppression
             $this->showConfirmationModalUser = false;
 
+            $userIdToDelete = $this->userIdToDelete;
+
             if ($this->userIdToDelete) {
             // Supprimer la maison en utilisant l'ID
             User::find($userIdToDelete)->delete();
