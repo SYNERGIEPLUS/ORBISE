@@ -21,6 +21,7 @@ class PermissionAdmin extends Seeder
             ['user_id' => 1, 'permission_id' => 2], // utilisateur
             ['user_id' => 1, 'permission_id' => 3], //
             ['user_id' => 1, 'permission_id' => 4], // cmd_valide
+            ['user_id' => 1, 'permission_id' => 5], // cmd_rejete
         ]);
     }
 }
