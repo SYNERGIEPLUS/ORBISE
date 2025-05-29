@@ -22,13 +22,7 @@ class Valider extends Component
     public function showModalAnuller($id)
     {
 
-        $this->commd = $id; // Stocker l'ID de la commande à annuler
-
         $commande = GestCommande::find($id);
-
-          Carte::create([
-                'id_comm' => $this->commd,
-            ]);
 
         if ($commande) {
             $commande->Etat = '0';

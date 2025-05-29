@@ -68,6 +68,11 @@ class Amendement extends Component
     {
         $commande = GestCommande::find($this->commandeId);
 
+          Carte::create([
+                'id_comm' => $this->commandeId,
+            ]);
+            session()->flash('success', 'Une carte a été générée.');
+
         if ($commande) {
             $commande->Etat = '1';
             $commande->save();
