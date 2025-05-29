@@ -7,6 +7,7 @@
             <table class="table-auto w-full text-sm">
                 <thead>
                     <tr class="bg-gray-600 text-white text-left">
+                        <th class="px-4 py-3 border-b">ID Commande</th>
                         <th class="px-4 py-3 border-b">Date Commande</th>
                         <th class="px-4 py-3 border-b">Date Livraison</th>
                         <th class="px-4 py-3 border-b">Nature</th>
@@ -22,6 +23,7 @@
                 <tbody>
                     @foreach($cmd ?? [] as $carte)
                         <tr class="hover:bg-gray-100">
+                            <td class="px-4 py-3 border-b">{{ $carte->id }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->DateCommande }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->DateLivraison }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->NatureCarte }}</td>

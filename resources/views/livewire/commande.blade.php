@@ -162,6 +162,16 @@
                     </div>
 
                     <div>
+                        <p class="font-semibold">Service Commande :</p>
+                        <p>{{ $selectedCmd->ServiceCommande ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Email :</p>
+                        <p>{{ $selectedCmd->Mail ?? 'N/A' }}</p>
+                    </div>
+
+                    <div>
                         <p class="font-semibold">Etat :</p>
                         @if($selectedCmd->Etat == '1')
                             <span class="bg-green-500 text-white px-2 py-1 rounded">Livré</span>
@@ -171,6 +181,32 @@
                             <span class="bg-gray-400 text-white px-2 py-1 rounded">Rejeter</span>
                         @endif
                     </div>
+
+                    <div>
+                        <p class="font-semibold">Type :</p>
+                        @php
+                            $caracteristiques = $selectedCmd->Caracteristique ?? [];
+
+                            if (is_string($caracteristiques)) {
+                                $caracteristiques = json_decode($caracteristiques, true);
+                            }
+
+                            $groupes = array_chunk($caracteristiques, 3);
+                        @endphp
+
+                        <div class="space-y-2">
+                            @foreach($groupes as $ligne)
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach($ligne as $item)
+                                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                                            {{ $item }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="mt-6 flex justify-end">
@@ -190,6 +226,7 @@
             <table class="table-auto w-full text-sm">
                 <thead>
                     <tr class="bg-gray-600 text-white text-left">
+                        <th class="px-4 py-3 border-b">ID Commande</th>
                         <th class="px-4 py-3 border-b">Date Commande</th>
                         <th class="px-4 py-3 border-b">Date Livraison</th>
                         <th class="px-4 py-3 border-b">Nature</th>
@@ -205,7 +242,7 @@
                 <tbody>
                     @foreach($cmd ?? [] as $carte)
                         <tr class="hover:bg-gray-100">
-                            <td class="px-4 py-3 border-b">{{ $carte->DateCommande }}</td>
+                            <td class="px-4 py-3 border-b">{{ $carte->id }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->DateLivraison }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->NatureCarte }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->PaysCommande }}</td>
