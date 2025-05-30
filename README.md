@@ -3,7 +3,7 @@
 ## Laravel Version : V12
 
 ## Description
-Ce projet est une application de gestion développée avec Laravel. 
+Ce projet est une application de gestion développée avec Laravel. Dans le cadre de la soutenence de Mlle Onadia Amelle a l'ISIG Année Mai 2025
 ## Installation
 
 1. Clonez le dépôt :
