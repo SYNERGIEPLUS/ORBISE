@@ -17,7 +17,7 @@ class Amendement extends Component
 
     public function mount()
     {
-        // Récupérer uniquement les commandes avec Etat = 0
+        // Récupérer uniquement les commandes avec Etat = 0 -
         $this->cmd = GestCommande::where('Etat', '0')->get();
     }
 
