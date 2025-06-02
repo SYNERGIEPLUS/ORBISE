@@ -42,7 +42,7 @@ new class extends Component
 
         <div class="flex">
             {{-- Sidebar --}}
-            <!-- Ajoute ce CDN dans le <head> si ce n’est pas déjà fait -->
+            <!-- Ajoute ce CDN dans le <head> si ce n’est pas déjà fait ok -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
             @php
