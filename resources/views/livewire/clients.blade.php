@@ -37,15 +37,6 @@
                             <input type="text" wire:model.defer="Telephone" class="w-full border rounded px-3 py-2">
                         </div>
 
-                        <div> 
-                            <label class="block text-sm mb-1">Sexe</label>
-                            <select wire:model.defer="Sexe" class="w-full border rounded px-3 py-2">
-                                <option value="">-- Sélectionner --</option>
-                                <option value="Homme">Homme</option>
-                                <option value="Femme">Femme</option>
-                            </select>
-                        </div>
-
 
                     </div>
 
@@ -102,11 +93,6 @@
                         <p>{{ $selectedCmd->Mail ?? 'N/A' }}</p>
                     </div>
 
-                    <div>
-                        <p class="font-semibold">Sexe :</p>
-                        <p>{{ $selectedCmd->Sexe ?? 'N/A' }}</p>
-                    </div>
-
                 </div>
 
                 <div class="mt-6 flex justify-end">
@@ -131,7 +117,6 @@
                         <th class="px-4 py-3 border-b">Ville</th>
                         <th class="px-4 py-3 border-b">Email</th>
                         <th class="px-4 py-3 border-b">Téléphone</th>
-                        <th class="px-4 py-3 border-b">Sexe</th>
                         <th class="px-4 py-3 border-b">Actions</th>
                     </tr>
                 </thead>
@@ -143,7 +128,6 @@
                             <td class="px-4 py-3 border-b">{{ $carte->Ville }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->Mail }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->Telephone }}</td>
-                            <td class="px-4 py-3 border-b">{{ $carte->Sexe }}</td>
                             <td class="px-4 py-3 border-b space-y-2">
                                 <!-- Bouton Supprimer -->
                                 <button wire:click="confirmDelete({{ $carte->id }})"

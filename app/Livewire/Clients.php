@@ -25,7 +25,6 @@ class Clients extends Component
         'Ville' => 'nullable|string|max:100',
         'Mail' => 'nullable|email|max:255',
         'Telephone' => 'nullable|string|max:20',
-        'Sexe' => 'nullable|string|max:10',
     ];
 
     // Champs formulaire
@@ -50,7 +49,6 @@ class Clients extends Component
         $this->Ville = '';
         $this->Mail = '';
         $this->Telephone = '';
-        $this->Sexe = '';
         $this->selectedClientId = null;
     }
 
@@ -67,7 +65,6 @@ class Clients extends Component
                 'Ville' => $this->Ville,
                 'Mail' => $this->Mail,
                 'Telephone' => $this->Telephone,
-                'Sexe' => $this->Sexe,
             ]);
         } else {
             // Create
@@ -77,7 +74,6 @@ class Clients extends Component
                 'Ville' => $this->Ville,
                 'Mail' => $this->Mail,
                 'Telephone' => $this->Telephone,
-                'Sexe' => $this->Sexe,
             ]);
         }
 
