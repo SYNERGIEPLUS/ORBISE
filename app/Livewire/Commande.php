@@ -78,7 +78,7 @@ class Commande extends Component
         GestCommande::create([
             'DateCommande' => $this->DateCommande,
             'NatureCarte' => $this->NatureCarte,
-            'ServiceCommande' => $this->ServiceCommande,
+            'Caracteristique' => json_encode($this->Caracteristique),
             'DateLivraison' => $this->DateLivraison,
             'id_client' => $this->id_client,
             'Etat' => $this->Etat,
