@@ -74,25 +74,31 @@ new class extends Component
                     @if($user && $user->hasPermission('commande'))
                         <a href="{{ route('cmd') }}" 
                         class="flex items-center px-3 py-2 rounded {{ $current == 'cmd' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
-                            <i class="fas fa-file-invoice-dollar text-xl w-6 mr-3"></i> Commandes
+                            <i class="fas fa-file-invoice-dollar text-xl w-6 mr-3"></i> Les Commandes
                         </a>
                     @endif
                     @if($user && $user->hasPermission('amendement'))
                     <a href="{{ route('amender') }}" 
                     class="flex items-center px-3 py-2 rounded {{ $current == 'amender' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
-                        <i class="fas fa-pen-nib text-xl w-6 mr-3"></i> Amendements
+                        <i class="fas fa-pen-nib text-xl w-6 mr-3"></i> Les Amendements
                     </a>
                     @endif
                     @if($user && $user->hasPermission('cmd_valide'))
                     <a href="{{ route('validate') }}" 
                     class="flex items-center px-3 py-2 rounded {{ $current == 'validate' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
-                        <i class="fas fa-check-circle text-xl w-6 mr-3"></i> Cmd validées
+                        <i class="fas fa-check-circle text-xl w-6 mr-3"></i> Les Commandes validées
                     </a>
                     @endif
                     @if($user && $user->hasPermission('cmd_rejete'))
                     <a href="{{ route('dismiss') }}" 
                     class="flex items-center px-3 py-2 rounded {{ $current == 'dismiss' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
-                        <i class="fas fa-times-circle text-xl w-6 mr-3"></i> Cmd rejetées
+                        <i class="fas fa-times-circle text-xl w-6 mr-3"></i>Les Commandes rejetées
+                    </a>
+                    @endif
+                    @if($user && $user->hasPermission('cmd_livrer'))
+                    <a href="{{ route('deliver') }}" 
+                    class="flex items-center px-3 py-2 rounded {{ $current == 'deliver' ? 'bg-gray-200 text-indigo-700 font-semibold' : 'hover:bg-gray-100' }}">
+                        <i class="fas fa-check-circle text-xl w-6 mr-2"></i>Les Commandes livrées
                     </a>
                     @endif
                     <a href="{{ route('card') }}" 

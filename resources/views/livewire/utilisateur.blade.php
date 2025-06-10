@@ -59,7 +59,7 @@
                                     @if($users->type == 'admin')
                                         <span class="bg-green-500 text-white px-2 py-1 rounded">Admin</span>
                                     @else
-                                        <span class="bg-blue-500 text-white px-2 py-1 rounded">Utilisateur</span>
+                                        <span class="bg-blue-500 text-white px-2 py-1 rounded">{{ $users->name }}</span>
                                     @endif
                                 </td>
                                 <td class="px-4 py-3 border-b">{{ $users->created_at }}</td>

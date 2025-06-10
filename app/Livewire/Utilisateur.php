@@ -25,6 +25,7 @@ class Utilisateur extends Component
         'amendement' => false,
         'cmd_valide' => false,
         'cmd_rejete' => false,
+        'cmd_livrer' => false,
     ];
 
     public function mount()

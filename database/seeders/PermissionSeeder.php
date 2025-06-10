@@ -20,6 +20,7 @@ class PermissionSeeder extends Seeder
             ['name' => 'amendement', 'label' => 'Gérer les amendements'],
             ['name' => 'cmd_valide', 'label' => 'Voir commandes validées'],
             ['name' => 'cmd_rejete', 'label' => 'Voir commandes rejetées'],
+            ['name' => 'cmd_livrer', 'label' => 'Voir commandes livrées'],
         ];
 
         foreach ($permissions as $perm) {

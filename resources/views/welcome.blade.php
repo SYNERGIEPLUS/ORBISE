@@ -12,7 +12,7 @@
 
     <div class="min-h-screen flex flex-col items-center justify-center">
         <div class="text-center">
-            <h1 class="text-4xl font-bold mb-4">Bienvenue sur ORBIS, votre application de gestion de commandes</h1>
+            <h1 class="text-4xl font-bold mb-4">Bienvenue sur ORBIS, votre application de suivi de commandes</h1>
             <p class="mb-6">Institut Géographique du Burkina</p>
 
             <div class="space-x-4">

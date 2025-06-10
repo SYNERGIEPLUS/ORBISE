@@ -23,8 +23,14 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm">Service Commande</label>
-                            <input type="text" wire:model.defer="ServiceCommande" class="w-full border rounded px-3 py-2">
+                            <label class="block text-sm">Client</label>
+                            <select id="id_client" wire:model.defer="id_client"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="">Sélectionner</option>
+                                @foreach ($clientier as $client)
+                                    <option value="{{ $client->id }}">{{ $client->NomPrenom }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div>
@@ -36,35 +42,13 @@
                                 <option value="Numerique">✅Numerique</option>
                             </select>
                         </div>
-
-                        <div>
-                            <label class="block text-sm">Pays</label>
-                            <input type="text" wire:model.defer="PaysCommande" class="w-full border rounded px-3 py-2">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm">Ville</label>
-                            <input type="text" wire:model.defer="VilleCommande" class="w-full border rounded px-3 py-2">
-                        </div>
-
+                        
                         <div>
                             <label class="block text-sm">État</label>
                             <select wire:model.defer="Etat" class="w-full border rounded px-3 py-2">
                                 <option value="">-- Choisir --</option>
                                 <option value="0">En attente</option>
-                                <option value="1">Livré</option>
-                                <option value="2">Annulé</option>
                             </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm">Email</label>
-                            <input type="email" wire:model.defer="Mail" class="w-full border rounded px-3 py-2">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm">Téléphone</label>
-                            <input type="text" wire:model.defer="Telephone" class="w-full border rounded px-3 py-2">
                         </div>
 
                         <div>
@@ -227,14 +211,11 @@
                 <thead>
                     <tr class="bg-gray-600 text-white text-left">
                         <th class="px-4 py-3 border-b">ID Commande</th>
+                        <th class="px-4 py-3 border-b">Client</th>
                         <th class="px-4 py-3 border-b">Date Commande</th>
                         <th class="px-4 py-3 border-b">Date Livraison</th>
                         <th class="px-4 py-3 border-b">Nature</th>
-                        <th class="px-4 py-3 border-b">Pays</th>
-                        <th class="px-4 py-3 border-b">Ville</th>
                         <th class="px-4 py-3 border-b">État</th>
-                        <th class="px-4 py-3 border-b">Email</th>
-                        <th class="px-4 py-3 border-b">Téléphone</th>
                         <th class="px-4 py-3 border-b">Quantité</th>
                         <th class="px-4 py-3 border-b">Actions</th>
                     </tr>
@@ -243,11 +224,10 @@
                     @foreach($cmd ?? [] as $carte)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-3 border-b">{{ $carte->id }}</td>
+                            <td class="px-4 py-3 border-b">{{ $carte->clients->NomPrenom ?? Null}}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->DateCommande }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->DateLivraison }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->NatureCarte }}</td>
-                            <td class="px-4 py-3 border-b">{{ $carte->PaysCommande }}</td>
-                            <td class="px-4 py-3 border-b">{{ $carte->VilleCommande }}</td>
                             <td class="px-4 py-3 border-b">
                                 @if($carte->Etat == '1')
                                     <span class="bg-green-500 text-white px-2 py-1 rounded">Livré</span>
@@ -257,8 +237,6 @@
                                     <span class="bg-gray-400 text-white px-2 py-1 rounded">Rejeter</span>
                                 @endif
                             </td>
-                            <td class="px-4 py-3 border-b">{{ $carte->Mail }}</td>
-                            <td class="px-4 py-3 border-b">{{ $carte->Telephone }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->Quantite }}</td>
                             <td class="px-4 py-3 border-b space-y-2">
                                 <!-- Bouton Supprimer -->
@@ -285,7 +263,7 @@
     <div class="mt-4">
         <button wire:click="showModal" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center space-x-2">
             <i class="fas fa-plus"></i>
-            <span>Ajouter une carte</span>
+            <span>Ajouter une commande</span>
         </button>
     </div>
 

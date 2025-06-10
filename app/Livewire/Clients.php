@@ -29,7 +29,7 @@ class Clients extends Component
     ];
 
     // Champs formulaire
-    public $NomPrenom, $Pays, $Ville, $Mail, $Telephone, $Sexe;
+    public $NomPrenom, $Pays, $Ville, $Mail, $Telephone, $Sexe, $clientier;
 
     public function showModal()
     {
@@ -113,10 +113,13 @@ class Clients extends Component
         $this->selectedCmd = null;
     }
 
+    public function mount()
+    {
+        $this->cmd = Client::orderBy('created_at', 'desc')->get();
+    }
 
     public function render()
     {
-        $this->cmd = Client::orderBy('created_at', 'desc')->get();
         return view('livewire.clients');
     }
 }

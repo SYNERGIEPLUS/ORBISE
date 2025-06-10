@@ -15,7 +15,7 @@ class Valider extends Component
 
     public function mount()
     {
-        // Récupérer uniquement les commandes avec Etat = 0
+        // Récupérer uniquement les commandes avec Etat = 0 
         $this->cmd = GestCommande::where('Etat', '1')->get();
     }
 
@@ -40,6 +40,28 @@ class Valider extends Component
         // Rafraîchir la liste des commandes
         $this->cmd = GestCommande::where('Etat', '1')->get();
         
+    }
+
+    public function showModalLivrer($id)
+    {
+        $commande = GestCommande::find($id);
+
+        if ($commande) {
+            // Supprimer en utilisant l'ID
+            Carte::where('id_comm', $id)->delete();
+        }
+
+        if ($commande) {
+            $commande->Etat = '3';
+            $commande->save();
+
+            session()->flash('success', 'Commande Livrée avec succès.');
+        } else {
+            session()->flash('error', 'Commande introuvable.');
+        }
+
+        // Rafraîchir la liste des commandes
+        $this->cmd = GestCommande::where('Etat', '1')->get();
     }
 
     public function render()

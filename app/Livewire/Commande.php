@@ -4,6 +4,7 @@ namespace App\Livewire;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Client;
 use App\Models\GestCommande;
 
 use Livewire\Component;
@@ -17,7 +18,7 @@ class Commande extends Component
     public $showConfirmationModal = false;
     public $showDetail = false;
 
-    public $ID_Carte, $DateCommande, $selectedCmd, $NatureCarte, $ServiceCommande, $DateLivraison, $TypeCartes, $PaysCommande, $VilleCommande, $Etat, $Mail, $Telephone, $Quantite, $user_id;
+    public $ID_Carte, $DateCommande, $selectedCmd, $id_client, $clientier, $NatureCarte, $ServiceCommande, $DateLivraison, $TypeCartes, $PaysCommande, $VilleCommande, $Etat, $Mail, $Telephone, $Quantite, $user_id;
     public $CmdIdToDelete;
 
     public $isModalOpen = false;
@@ -26,6 +27,7 @@ class Commande extends Component
         {
             // Récupérer lors de l'initialisation du composant
             $this->cmd = GestCommande::all();
+            $this->clientier = Client::all();
         }
 
     public function showModal()
@@ -56,12 +58,8 @@ class Commande extends Component
         $this->DateLivraison = '';
         $this->Caracteristique = [];
         $this->NatureCarte = '';
-        $this->ServiceCommande = '';
-        $this->PaysCommande = '';
-        $this->VilleCommande = '';
+        $this->id_client = '';
         $this->Etat = '';
-        $this->Mail = '';
-        $this->Telephone = '';
         $this->Quantite = '';
     }
 
@@ -70,28 +68,20 @@ class Commande extends Component
         $this->validate([
             'DateCommande' => 'required|date',
             'NatureCarte' => 'required|string',
-            'ServiceCommande' => 'required|string',
             'Caracteristique' => 'required|array|min:1',
             'DateLivraison' => 'required|date',
-            'PaysCommande' => 'required|string',
-            'VilleCommande' => 'required|string',
+            'id_client' => 'required|exists:clients,id',
             'Etat' => 'required|string',
-            'Mail' => 'required|email',
-            'Telephone' => 'required|string',
             'Quantite' => 'required|integer',
         ]);
 
         GestCommande::create([
             'DateCommande' => $this->DateCommande,
             'NatureCarte' => $this->NatureCarte,
-            'Caracteristique' => json_encode($this->Caracteristique),
             'ServiceCommande' => $this->ServiceCommande,
             'DateLivraison' => $this->DateLivraison,
-            'PaysCommande' => $this->PaysCommande,
-            'VilleCommande' => $this->VilleCommande,
+            'id_client' => $this->id_client,
             'Etat' => $this->Etat,
-            'Mail' => $this->Mail,
-            'Telephone' => $this->Telephone,
             'Quantite' => $this->Quantite,
             'user' => Auth::id(),
         ]);

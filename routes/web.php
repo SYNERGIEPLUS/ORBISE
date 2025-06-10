@@ -31,6 +31,10 @@ Route::view('dismiss', 'dismiss')
     ->middleware(['auth', 'verified'])
     ->name('dismiss'); 
 
+Route::view('deliver', 'deliver')
+    ->middleware(['auth', 'verified'])
+    ->name('deliver'); 
+
 Route::view('card', 'card')
     ->middleware(['auth', 'verified'])
     ->name('card');

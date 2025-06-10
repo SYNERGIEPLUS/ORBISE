@@ -1,5 +1,5 @@
 <div class="bg-white p-4 rounded shadow">
-    <h3 class="text-lg font-semibold mb-4">Commandes Rejeter</h3>
+    <h3 class="text-lg font-semibold mb-4">Commandes Livrer</h3>
 
     <div class="space-y-4">
         <!-- Table à gauche -->
@@ -28,8 +28,8 @@
                             <td class="px-4 py-3 border-b">
                                 @if($carte->Etat == '1')
                                     <span class="bg-green-500 text-white px-2 py-1 rounded">Validé</span>
-                                @elseif($carte->Etat == '2')
-                                    <span class="bg-yellow-500 text-white px-2 py-1 rounded">Rejeter</span>
+                                @elseif($carte->Etat == '3')
+                                    <span class="bg-yellow-500 text-white px-2 py-1 rounded">Livrer</span>
                                 @else
                                     <span class="bg-gray-400 text-white px-2 py-1 rounded">{{ $carte->Etat }}</span>
                                 @endif
