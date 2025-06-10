@@ -24,6 +24,7 @@
                     @foreach($cmd ?? [] as $carte)
                         <tr class="hover:bg-gray-100">
                             <td class="px-4 py-3 border-b">{{ $carte->id }}</td>
+                            <td class="px-4 py-3 border-b">{{ $carte->DateCommande }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->DateLivraison }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->NatureCarte }}</td>
                             <td class="px-4 py-3 border-b">{{ $carte->PaysCommande }}</td>
