@@ -78,6 +78,7 @@ class Clients extends Component
         }
 
         $this->closeDetail();
+        $this->cmd = Client::orderBy('created_at', 'desc')->get();
         session()->flash('message', 'Client enregistré avec succès.');
     }
 
